@@ -1,6 +1,14 @@
-import click
 from src.data.database import init_db, SessionLocal
 from src.core.services import register_entry, add_score, list_entries
+import click
+import sys
+import os
+
+# Dynamically add the project root to sys.path
+project_root = os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..', '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 
 @click.group()
