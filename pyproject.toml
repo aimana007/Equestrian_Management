@@ -6,7 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "equestrian-management"
 version = "0.1.0"
 description = "Equestrian Management System"
+requires-python = ">=3.8"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]
+[tool.setuptools]
+packages = ["src"]
+package-dir = {"" = "."}
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md", "*.cfg", "*.json"]
