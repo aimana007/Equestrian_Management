@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Entries List</h2>
+<ul>
+    {% for entry in entries %}
+    <li>Entry {{ entry.id }}: {{ entry.rider.name }} ({{ entry.rider.age }}) on {{ entry.horse.name }} ({{
+        entry.horse.age }}) in {{ entry.event_name }} - Score: {{ entry.score }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

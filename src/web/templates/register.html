@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Register Entry</h2>
+<form method="POST">
+    Rider Name: <input type="text" name="rider_name" required><br>
+    Rider Age: <input type="number" name="rider_age" required><br>
+    Horse Name: <input type="text" name="horse_name" required><br>
+    Horse Age: <input type="number" name="horse_age" required><br>
+    Event Name: <input type="text" name="event_name" required><br>
+    <input type="submit" value="Register">
+</form>
+{% endblock %}

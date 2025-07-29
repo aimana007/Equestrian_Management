@@ -1,15 +1,14 @@
-from src.core.services import register_entry, add_score, list_entries
-from src.data.database import SessionLocal
-from flask import Flask, render_template, request, redirect, url_for
 import sys
 import os
+from flask import Flask, render_template, request, redirect, url_for
+from src.data.database import SessionLocal
+from src.core.services import register_entry, add_score, list_entries
 
-# Dynamically add the project root to sys.path (reuse from CLI if needed)
+# Dynamically add the project root to sys.path (after imports, but before using them)
 project_root = os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
-
 
 app = Flask(__name__, template_folder='templates')
 

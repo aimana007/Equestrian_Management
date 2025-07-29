@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Score</h2>
+<form method="POST">
+    Entry ID: <input type="number" name="entry_id" required><br>
+    Score: <input type="number" name="score" required><br>
+    <input type="submit" value="Update Score">
+</form>
+{% endblock %}
