@@ -1,3 +1,2 @@
-flask
-click
 sqlalchemy
+click
