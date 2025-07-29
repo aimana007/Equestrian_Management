@@ -1,8 +1,8 @@
-import sys
-import os
-from flask import Flask, render_template, request, redirect, url_for
-from src.data.database import SessionLocal
 from src.core.services import register_entry, add_score, list_entries
+from src.data.database import SessionLocal
+from flask import Flask, render_template, request, redirect, url_for
+import os
+import sys
 
 # Dynamically add the project root to sys.path (after imports, but before using them)
 project_root = os.path.abspath(os.path.join(

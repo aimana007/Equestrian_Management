@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from src.core.models import Rider, Horse, Entry
 
 
@@ -31,4 +31,7 @@ def add_score(session: Session, entry_id: int, score: int):
 
 
 def list_entries(session: Session):
-    return session.query(Entry).all()
+    return session.query(Entry).options(
+        joinedload(Entry.rider),
+        joinedload(Entry.horse)
+    ).all()
