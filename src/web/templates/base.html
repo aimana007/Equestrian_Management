@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Horse Show App</title>
+</head>
+
+<body>
+    <h1>Horse Show Registration and Tracking</h1>
+    <nav>
+        <a href="{{ url_for('register') }}">Register Entry</a> |
+        <a href="{{ url_for('score') }}">Add Score</a> |
+        <a href="{{ url_for('list_entries_web') }}">List Entries</a>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+
+</html>
