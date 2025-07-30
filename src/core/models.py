@@ -23,6 +23,7 @@ class Entry(Base):
     rider_id = Column(Integer, ForeignKey("riders.id"))
     horse_id = Column(Integer, ForeignKey("horses.id"))
     event_name = Column(String)
+    age_category = Column(String)  # NEW FIELD
     score = Column(Integer, default=0)
 
     rider = relationship("Rider")

@@ -1,16 +1,20 @@
 from src.core.services import register_entry, add_score, list_entries
+from src.core.age_categories import AgeCategoriesService  # NEW IMPORT
 from src.data.database import SessionLocal
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import sys
 
-# Dynamically add the project root to sys.path (after imports, but before using them)
+# Dynamically add the project root to sys.path
 project_root = os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 app = Flask(__name__, template_folder='templates')
+
+# Initialize age categories service
+age_service = AgeCategoriesService()
 
 
 @app.route('/')
@@ -26,12 +30,21 @@ def register():
         horse_name = request.form['horse_name']
         horse_age = int(request.form['horse_age'])
         event_name = request.form['event_name']
+        age_category_id = request.form['age_category']  # NEW FIELD
+        
+        # Get the selected age category name
+        selected_category = age_service.get_category_by_id(age_category_id)
+        age_category_name = selected_category['name'] if selected_category else None
 
         with SessionLocal() as session:
             entry = register_entry(
-                session, rider_name, rider_age, horse_name, horse_age, event_name)
+                session, rider_name, rider_age, horse_name, 
+                horse_age, event_name, age_category_name)  # NEW PARAMETER
         return redirect(url_for('list_entries_web'))
-    return render_template('register.html')
+    
+    # Pass age categories to template
+    categories = age_service.get_all_categories()
+    return render_template('register.html', age_categories=categories)
 
 
 @app.route('/score', methods=['GET', 'POST'])

@@ -2,7 +2,9 @@ from sqlalchemy.orm import Session, joinedload
 from src.core.models import Rider, Horse, Entry
 
 
-def register_entry(session: Session, rider_name: str, rider_age: int, horse_name: str, horse_age: int, event_name: str):
+def register_entry(session: Session, rider_name: str, rider_age: int, 
+                  horse_name: str, horse_age: int, event_name: str, 
+                  age_category: str = None):  # NEW PARAMETER
     rider = session.query(Rider).filter_by(name=rider_name).first()
     if not rider:
         rider = Rider(name=rider_name, age=rider_age)
@@ -15,7 +17,12 @@ def register_entry(session: Session, rider_name: str, rider_age: int, horse_name
         session.add(horse)
         session.commit()
 
-    entry = Entry(rider_id=rider.id, horse_id=horse.id, event_name=event_name)
+    entry = Entry(
+        rider_id=rider.id, 
+        horse_id=horse.id, 
+        event_name=event_name,
+        age_category=age_category  # NEW FIELD
+    )
     session.add(entry)
     session.commit()
     return entry
