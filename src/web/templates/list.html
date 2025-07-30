@@ -1,10 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Entries List</h2>
-<ul>
-    {% for entry in entries %}
-    <li>Entry {{ entry.id }}: {{ entry.rider.name }} ({{ entry.rider.age }}) on {{ entry.horse.name }} ({{
-        entry.horse.age }}) in {{ entry.event_name }} - Score: {{ entry.score }}</li>
-    {% endfor %}
-</ul>
+<h2>All Entries</h2>
+{% if entries %}
+<table border="1" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Entry ID</th>
+            <th>Rider</th>
+            <th>Rider Age</th>
+            <th>Horse</th>
+            <th>Horse Age</th>
+            <th>Event</th>
+            <th>Age Category</th> <!-- NEW COLUMN -->
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.id }}</td>
+            <td>{{ entry.rider.name }}</td>
+            <td>{{ entry.rider.age }}</td>
+            <td>{{ entry.horse.name }}</td>
+            <td>{{ entry.horse.age }}</td>
+            <td>{{ entry.event_name }}</td>
+            <td>{{ entry.age_category or 'Not specified' }}</td> <!-- NEW FIELD -->
+            <td>{{ entry.score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No entries found.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('register') }}">Register New Entry</a> |
+<a href="{{ url_for('score') }}">Add Score</a>
 {% endblock %}

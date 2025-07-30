@@ -2,11 +2,48 @@
 {% block content %}
 <h2>Register Entry</h2>
 <form method="POST">
-    Rider Name: <input type="text" name="rider_name" required><br>
-    Rider Age: <input type="number" name="rider_age" required><br>
-    Horse Name: <input type="text" name="horse_name" required><br>
-    Horse Age: <input type="number" name="horse_age" required><br>
-    Event Name: <input type="text" name="event_name" required><br>
+    <div>
+        <label for="rider_name">Rider Name:</label>
+        <input type="text" name="rider_name" id="rider_name" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="rider_age">Rider Age:</label>
+        <input type="number" name="rider_age" id="rider_age" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="horse_name">Horse Name:</label>
+        <input type="text" name="horse_name" id="horse_name" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="horse_age">Horse Age:</label>
+        <input type="number" name="horse_age" id="horse_age" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="event_name">Event Name:</label>
+        <input type="text" name="event_name" id="event_name" required>
+    </div>
+    <br>
+
+    <!-- NEW: Age Category Dropdown -->
+    <div>
+        <label for="age_category">Age Category:</label>
+        <select name="age_category" id="age_category" required>
+            <option value="">Select Age Category</option>
+            {% for category in age_categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+
     <input type="submit" value="Register">
 </form>
 {% endblock %}
